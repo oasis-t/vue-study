@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='vue.js'></script>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in movies" @click="actIndex=index" :class="{active:actIndex==index}">{{index}}->{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        var demo = new Vue({
+            el:'#app',
+            data:{
+                actIndex:0,
+                movies:['星际穿越','盗梦空间','指环王','火影忍者']
+            }
+        })
+    </script>
+</body>
+</html>

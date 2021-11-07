@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <script src='vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        <cpn @btnclick="parentclick"></cpn>
+    </div>
+
+    <template id='child'>
+        <div>
+            <button v-for="item in info" @click="btnclick(item)">{{item.name}}</button>
+        </div>
+    </template>
+    <script>
+        const cpn = {
+            template: '#child',
+            data() {
+                return {
+                    info: [
+                        { id: '111', name: '手机数码' },
+                        { id: '222', name: '家电' },
+                        { id: '333', name: '生活用品' },
+                        { id: '444', name: '食品' }
+                    ]
+                }
+
+            },
+            methods: {
+                btnclick(item) {
+                    this.$emit('btnclick', item)
+                }
+            }
+        }
+
+        var demo = new Vue({
+            el: '#app',
+            data: {
+            },
+            components: {
+                cpn
+            },
+            methods: {
+                parentclick(item) {
+                    console.log('parentclick');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
