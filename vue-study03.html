@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <script src='vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        <!--  {{evenNum}}
+        <input type="text" v-model="msg">
+        {{msg}} -->
+        <label for="male">
+            <input type="radio" id="male" value="男" v-model="sex">male
+
+        </label>
+        <label for="female">
+            <input type="radio" id="female" value="女" v-model="sex">female
+
+        </label>
+
+        <h2>{{sex}}</h2>
+        <label for="protocol">
+            <input type="checkbox" id="protocol" value="" v-model="isAgree">同意协议
+        </label>
+        {{isAgree}}
+
+        <select name="aaa" id="" v-model="cars">
+            <option value="benz">benz</option>
+            <option value="bmw">bmw</option>
+            <option value="audi">audi</option>
+        </select>
+        <h2>
+            {{cars}}
+
+        </h2>
+        <button @click="greet">click</button>
+        <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+            Submit
+        </button>
+        <input type="text" v-model.lazy="msg" placeholder="Please enter a message">
+        <h2>{{msg}}</h2>
+    </div>
+    <script>
+        var demo = new Vue({
+            el: '#app',
+            data: {
+                nums: [12, 44, 25, 4, 37, 92],
+                msg: '',
+                sex: '男',
+                isAgree: false,
+                cars: 'benz'
+            },
+            computed: {
+                evenNum(nums) {
+                    return this.nums.filter(function (nums) {
+                        return nums <= 50
+
+                    })
+                }
+            },
+            methods: {
+                greet(event) {
+                    // `this` 在方法里指向当前 Vue 实例
+                    alert(this.msg + '!')
+                    // `event` 是原生 DOM 事件
+                    if (event) {
+                        alert(event.target.tagName)
+                    }
+                },
+                warn (message, event) {
+                    // 现在我们可以访问原生事件对象
+                    if (event) {
+                        event.preventDefault()
+                    }
+                    alert(message)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

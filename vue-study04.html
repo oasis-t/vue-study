@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <script src='vue.js'></script>
+</head>
+<body>
+    <!-- 全局注册 -->
+    <!-- 3、使用组件 -->
+    <div id='app'>
+        <cpn></cpn>
+        <cpn></cpn>
+    </div>
+<hr />
+    <div id="app2">
+        <cpn></cpn>
+        <cpn></cpn>
+    </div>
+
+    <script>
+        // 1、创建组件构造器
+        const myVue = Vue.extend({
+            template:'<h2>My template</h2>'
+        })
+        //2、注册组件
+        Vue.component("cpn",myVue);
+
+        var demo = new Vue({
+            el:'#app',
+            data: {
+            },
+            
+        })
+    </script>
+</body>
+</html>

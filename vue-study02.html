@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <script src='vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        <h2 v-if="seen">{{msg}}</h2>
+        <h2 v-if="score>=90">优秀</h2>
+        <h2 v-else-if="score>=80">良好</h2>
+        <h2 v-else-if="score>=60">及格</h2>
+        <h2 v-else>不及格</h2>
+        <div>
+            <template v-if="isUser">
+                <label for="username">账号：</label>
+                <input type="text" id="username" placeholder="请输入账号..." key="username">
+            </template>
+            <template v-else>
+                <label for="mail">邮箱：</label>
+                <input type="text" id="mail" placeholder="请输入邮箱..." key="mail">
+            </template>
+            <button @click="change">change</button>
+        </div>
+        <!-- <h2>{{firstName+' '+lastName}}</h2> -->
+        <h2>{{fullName}}</h2>
+        <button @click="func2">btn2</button>
+        <button @click="func2(123,$event)">btn2</button>
+        <div @click="func4">
+            2222222222
+            <button @click.stop="func3">btn3</button>
+        </div>
+        <form action="baidu">
+            <input type="submit" @click.prevent="func5" value="submit">
+        </form>
+    </div>
+    <script>
+        var demo = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'Steven',
+                lastName: 'Jobs',
+                msg:"Hello Vue",
+                seen:true,
+                score:95,
+                isUser:true
+            },
+            computed: {
+                fullName: function () {
+                    return this.firstName + ' ' + this.lastName
+                }
+            },
+            methods: {
+                func2() {
+                    console.log(event);
+                },
+                func3() {
+                    console.log("func3Click");
+                },
+                func4(){
+                    console.log("divClick");
+                },
+                func5(){
+                    console.log("form");
+                },
+                change(){
+                    this.isUser = !this.isUser;
+                    
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

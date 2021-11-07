@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        .act{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id='demo'>
+        <span v-once>{{message}}</span>
+        <h2>{{message}} {{ex}}</h2>
+        <ol>
+            <li v-for="(item,index) in movies" @click="actIndex=index" :class="{act:(actIndex==index)}">{{index}}-->{{item}}</li>
+        </ol>
+        <span>{{count}}</span>
+        <button @click='add'>+</button>
+        <button @click='minus'>-</button>
+        <p v-html="url"></p>
+        <!-- <img :src="myImage"> -->
+        <h2 class="abbc" :class="getClasses()">test</h2>
+        <button @click="change">click</button>
+    </div>
+    <script>
+        var test=new Vue({
+            el:'#demo',
+            data:{
+                message:'Hello Vue',ex:'Vvvvvv',
+                movies:['泰坦尼克号','盗梦空间','教父'],
+                count:0,
+                url:'<a href="https://www.baidu.com">百度一下</a>',
+                // myImage:'http://img30.360buyimg.com/jdwork/jfs/t1/120685/6/19548/369878/615589b1E5c446f37/1a50efe33f6eff96.jpg',
+                isAct:true,
+                actIndex:0,
+            },
+            methods:{
+                add:function(){
+                    console.log('add被调用');
+                    this.count++
+                },
+                minus:function(){
+                    console.log('minus被调用');
+                    this.count--
+                },
+                change:function(){
+                    this.isAct=!this.isAct;
+                },
+                getClasses:function(){
+                    return {act:this.isAct};
+                }
+                
+            }
+        })
+    </script>
+</body>
+</html>
